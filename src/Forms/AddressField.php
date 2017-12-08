@@ -2,10 +2,12 @@
 
 namespace TheWebmen\Addressfield\Forms;
 
+use JeroenDesloovere\Geolocation\Geolocation;
 use SilverStripe\Forms\CompositeField;
 use SilverStripe\Forms\TextField;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\ORM\DataObjectInterface;
+use SilverStripe\Forms\ReadonlyField;
 
 class AddressField extends CompositeField {
 
@@ -30,8 +32,8 @@ class AddressField extends CompositeField {
         $this->_zipCodeField = TextField::create($zipCodeFieldName);
         $this->_streetField = TextField::create($streetFieldName);
         $this->_streetNumberField = TextField::create($streetNumberFieldName);
-        $this->_latitudeField = TextField::create($latitudeFieldName)->setReadonly(true)->setDisabled(true);
-        $this->_longitudeField = TextField::create($longitudeFieldName)->setReadonly(true)->setDisabled(true);
+        $this->_latitudeField = ReadonlyField::create($latitudeFieldName);
+        $this->_longitudeField = ReadonlyField::create($longitudeFieldName);
 
         parent::__construct([
             LiteralField::create('AddressLteral1', '<div class="row"><div class="col-md-6">'),
@@ -65,24 +67,51 @@ class AddressField extends CompositeField {
     public function saveInto(DataObjectInterface $record)
     {
         //Check if a update is needed
-        $fieldNames = [
-            $this->getCountryField()->getName(),
-            $this->getCityField()->getName(),
-            $this->getZipCodeField()->getName(),
-            $this->getStreetField()->getName(),
-            $this->getStreetNumberField()->getName()
+        $fields = [
+            $this->getCountryField(),
+            $this->getCityField(),
+            $this->getZipCodeField(),
+            $this->getStreetField(),
+            $this->getStreetNumberField()
         ];
         $needUpdate = false;
-        foreach($fieldNames as $fieldName){
-            if($this->_model->isChanged($fieldName)){
+        foreach($fields as $field){
+            $fieldName = $field->getName();
+            $fieldValue = $field->value;
+
+            if($this->_model->$fieldName != $fieldValue){
                 $needUpdate = true;
                 break;
             }
         }
+
         //Do the update
         if($needUpdate){
-            var_dump( $this->_model );
-            die;
+            $geolocation = new Geolocation();
+            $coordinates = $geolocation->getCoordinates(
+                $this->getStreetField()->value,
+                $this->getStreetNumberField()->value,
+                $this->getCityField()->value,
+                $this->getZipCodeField()->value,
+                $this->getCountryField()->value
+            );
+            $latitudeFieldName = $this->getLatitudeField()->getName();
+
+            if($coordinates && isset($coordinates['latitude'])){
+                $record->$latitudeFieldName = $coordinates['latitude'];
+                $this->getLatitudeField()->value = $coordinates['latitude'];
+            }else{
+                $record->$latitudeFieldName = '';
+                $this->getLatitudeField()->value = '';
+            }
+            $longitudeFieldName = $this->getLongitudeField()->getName();
+            if($coordinates && isset($coordinates['longitude'])){
+                $record->$longitudeFieldName = $coordinates['longitude'];
+                $this->getLongitudeField()->value = $coordinates['longitude'];
+            }else{
+                $record->$longitudeFieldName = '';
+                $this->getLongitudeField()->value = '';
+            }
         }
     }
 

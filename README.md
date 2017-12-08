@@ -17,5 +17,4 @@ composer require "thewebmen/silverstripe-addressfield" "dev-master"
 
 
 ## Todo
-* Lat long update
 * Distance tools
