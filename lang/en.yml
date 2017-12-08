@@ -1,0 +1,10 @@
+en:
+  TheWebmen\Addressfield\Forms\AddressField:
+    ADDRESS: 'Address'
+    CITY: 'City'
+    COUNTRY: 'Country'
+    ZIP_CODE: 'Zip code'
+    STREET: 'Street'
+    STREET_NUMBER: 'Street number'
+    LATITUDE: 'Latitude'
+    LONGITUDE: 'Longitude'

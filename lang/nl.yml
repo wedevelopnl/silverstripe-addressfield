@@ -1,0 +1,10 @@
+nl:
+  TheWebmen\Addressfield\Forms\AddressField:
+    ADDRESS: 'Adres'
+    CITY: 'Stad'
+    COUNTRY: 'Land'
+    ZIP_CODE: 'Postcode'
+    STREET: 'Straat'
+    STREET_NUMBER: 'Huisnummer'
+    LATITUDE: 'Latitude'
+    LONGITUDE: 'Longitude'

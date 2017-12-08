@@ -20,20 +20,31 @@ class AddressField extends CompositeField {
     private $_longitudeField;
     private $_model;
 
+    /**
+     * AddressField constructor.
+     * @param null $model
+     * @param string $cityFieldName
+     * @param string $countryFieldName
+     * @param string $zipCodeFieldName
+     * @param string $streetFieldName
+     * @param string $streetNumberFieldName
+     * @param string $latitudeFieldName
+     * @param string $longitudeFieldName
+     */
     public function __construct($model, $cityFieldName = 'City', $countryFieldName = 'Country', $zipCodeFieldName = 'ZipCode', $streetFieldName = 'Street', $streetNumberFieldName = 'StreetNumber', $latitudeFieldName = 'Latitude', $longitudeFieldName = 'Longitude')
     {
         $this->setTag('fieldset');
-        $this->setLegend('Address');
+        $this->setLegend(_t(self::class . '.ADDRESS', 'Address'));
 
         $this->_model = $model;
 
-        $this->_cityField = TextField::create($cityFieldName);
-        $this->_countryField = TextField::create($countryFieldName);
-        $this->_zipCodeField = TextField::create($zipCodeFieldName);
-        $this->_streetField = TextField::create($streetFieldName);
-        $this->_streetNumberField = TextField::create($streetNumberFieldName);
-        $this->_latitudeField = ReadonlyField::create($latitudeFieldName);
-        $this->_longitudeField = ReadonlyField::create($longitudeFieldName);
+        $this->_cityField = TextField::create($cityFieldName, _t(self::class . '.CITY', 'City'));
+        $this->_countryField = TextField::create($countryFieldName, _t(self::class . '.COUNTRY', 'Country'));
+        $this->_zipCodeField = TextField::create($zipCodeFieldName, _t(self::class . '.ZIP_CODE', 'Zip code'));
+        $this->_streetField = TextField::create($streetFieldName, _t(self::class . '.STREET', 'Street'));
+        $this->_streetNumberField = TextField::create($streetNumberFieldName, _t(self::class . '.STREET_NUMBER', 'Street number'));
+        $this->_latitudeField = ReadonlyField::create($latitudeFieldName, _t(self::class . '.LATITUDE', 'Latitude'));
+        $this->_longitudeField = ReadonlyField::create($longitudeFieldName, _t(self::class . '.LONGITUDE', 'Longitude'));
 
         parent::__construct([
             LiteralField::create('AddressLteral1', '<div class="row"><div class="col-md-6">'),
