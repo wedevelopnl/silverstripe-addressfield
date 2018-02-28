@@ -15,6 +15,9 @@ class GooglePlacesField extends TextField {
     private $_streetNumberField = '';
     private $_latitudeField = '';
     private $_longitudeField = '';
+    private $_mapurlField = '';
+    private $_placeidField = '';
+    private $_htmladdressField = '';
 
     public function __construct($name, $title = null, $value = '', $maxLength = null, $form = null)
     {
@@ -143,6 +146,57 @@ class GooglePlacesField extends TextField {
     {
         $this->setAttribute('data-cityfield', $cityField);
         $this->_cityField = $cityField;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMapurlField()
+    {
+        return $this->_mapurlField;
+    }
+
+    /**
+     * @param string $mapurlField
+     */
+    public function setMapurlField($mapurlField)
+    {
+        $this->setAttribute('data-mapurlfield', $mapurlField);
+        $this->_mapurlField = $mapurlField;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPlaceidField()
+    {
+        return $this->_placeidField;
+    }
+
+    /**
+     * @param string $placeidField
+     */
+    public function setPlaceidField($placeidField)
+    {
+        $this->setAttribute('data-placeidfield', $placeidField);
+        $this->_placeidField = $placeidField;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHtmladdressField()
+    {
+        return $this->_htmladdressField;
+    }
+
+    /**
+     * @param string $htmladdressField
+     */
+    public function setHtmladdressField($htmladdressField)
+    {
+        $this->setAttribute('data-htmladdressfield', $htmladdressField);
+        $this->_htmladdressField = $htmladdressField;
     }
 
 }

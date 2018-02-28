@@ -56,6 +56,7 @@
                         'state': false
                     };
                     var place = autocomplete.getPlace();
+
                     for (var i = 0; i < place.address_components.length; i++) {
                         var addressType = place.address_components[i].types[0];
                         var mapped = mapping[addressType];
@@ -65,6 +66,9 @@
                     }
                     data['latitude'] = place.geometry.location.lat();
                     data['longitude'] = place.geometry.location.lng();
+                    data['mapurl'] = place.url;
+                    data['placeid'] = place.place_id;
+                    data['htmladdress'] = place.adr_address;
                     for (var key in data) {
                         var fieldname = _this.data(key + 'field');
                         var field = form.find('[name="' + fieldname + '"]');
