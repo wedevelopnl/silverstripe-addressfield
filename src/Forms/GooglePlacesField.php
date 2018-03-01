@@ -10,6 +10,7 @@ class GooglePlacesField extends TextField {
 
     private $_cityField = '';
     private $_countryField = '';
+    private $_countryCodeField = '';
     private $_zipCodeField = '';
     private $_streetField = '';
     private $_streetNumberField = '';
@@ -197,6 +198,23 @@ class GooglePlacesField extends TextField {
     {
         $this->setAttribute('data-htmladdressfield', $htmladdressField);
         $this->_htmladdressField = $htmladdressField;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountryCodeField()
+    {
+        return $this->_countryCodeField;
+    }
+
+    /**
+     * @param string $countryCodeField
+     */
+    public function setCountryCodeField($countryCodeField)
+    {
+        $this->setAttribute('data-countrycodefield', $countryCodeField);
+        $this->_countryCodeField = $countryCodeField;
     }
 
 }
