@@ -43,8 +43,8 @@ class AddressField extends CompositeField {
         $this->_zipCodeField = TextField::create($zipCodeFieldName, _t(self::class . '.ZIP_CODE', 'Zip code'));
         $this->_streetField = TextField::create($streetFieldName, _t(self::class . '.STREET', 'Street'));
         $this->_streetNumberField = TextField::create($streetNumberFieldName, _t(self::class . '.STREET_NUMBER', 'Street number'));
-        $this->_latitudeField = TextField::create($latitudeFieldName, _t(self::class . '.LATITUDE', 'Latitude'))->setReadonly(true);
-        $this->_longitudeField = TextField::create($longitudeFieldName, _t(self::class . '.LONGITUDE', 'Longitude'))->setReadonly(true);
+        $this->_latitudeField = TextField::create($latitudeFieldName, _t(self::class . '.LATITUDE', 'Latitude'));
+        $this->_longitudeField = TextField::create($longitudeFieldName, _t(self::class . '.LONGITUDE', 'Longitude'));
 
         parent::__construct([
             LiteralField::create('AddressLteral1', '<div class="row"><div class="col-md-6">'),
