@@ -89,7 +89,7 @@
 
         whenGoogleLoadedDo(function () {
           autocomplete = new google.maps.places.Autocomplete(_this[0], {
-            types: ['geocode']
+            
           });
           autocomplete.addListener('place_changed', onPlaceChanged);
         });
