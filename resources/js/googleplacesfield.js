@@ -71,7 +71,15 @@
             }
           }
           data['latitude'] = place.geometry.location.lat();
+          var latitudeSplit = (data['latitude'] + '').split('.');
+          if(latitudeSplit[1].length > 8){
+            data['latitude'] = latitudeSplit[0] + '.' + (latitudeSplit[1] + '').substring(0, 8);
+          }
           data['longitude'] = place.geometry.location.lng();
+          var longitudeSplit = (data['longitude'] + '').split('.');
+          if(longitudeSplit[1].length > 8){
+            data['longitude'] = longitudeSplit[0] + '.' + (longitudeSplit[1] + '').substring(0, 8);
+          }
           data['mapurl'] = place.url;
           data['placeid'] = place.place_id;
           data['htmladdress'] = place.adr_address;
