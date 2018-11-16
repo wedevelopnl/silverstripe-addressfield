@@ -75,6 +75,8 @@ class AddressField extends CompositeField {
         return true;
     }
 
+    /*
+    TODO: Replace deprecated geolocation with https://github.com/geocoder-php/Geocoder
     public function saveInto(DataObjectInterface $record)
     {
         //Check if a update is needed
@@ -125,6 +127,7 @@ class AddressField extends CompositeField {
             }
         }
     }
+    */
 
     /**
      * @return TextField
