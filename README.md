@@ -26,7 +26,7 @@ TheWebmen\Addressfield\Forms\GooglePlacesField:
 Or add the following variable to your `.env`:
 
 ```
-WDVLP_ELEMENTAL_MAPS_API_KEY='API_KEY'
+WDVLP_ADDRESSFIELD_MAPS_API_KEY='API_KEY'
 ```
 
 ## Usage
