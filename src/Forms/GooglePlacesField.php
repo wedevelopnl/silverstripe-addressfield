@@ -2,10 +2,10 @@
 
 namespace TheWebmen\Addressfield\Forms;
 
+use SilverStripe\Core\Environment;
 use SilverStripe\Forms\TextField;
 use SilverStripe\View\Requirements;
 use SilverStripe\Core\Config\Config;
-
 class GooglePlacesField extends TextField {
 
     private $_cityField = '';
@@ -22,7 +22,19 @@ class GooglePlacesField extends TextField {
 
     public function __construct($name, $title = null, $value = '', $maxLength = null, $form = null)
     {
-        $key = Config::inst()->get(self::class, 'google_api_key');
+        $config = Config::inst()->get(self::class);
+        if ($config->get('maps_api_key')) {
+            $key = $config->get('maps_api_key');
+        }
+
+        if (empty($key) && Environment::getEnv('WDVLP_ELEMENTAL_MAPS_API_KEY')) {
+            $key = Environment::getEnv('WDVLP_ADDRESSFIELD_MAPS_API_KEY');
+        }
+
+        if (empty($key)) {
+            throw new \InvalidArgumentException("maps_api_key is empty", 1);
+        }
+
         Requirements::javascript('thewebmen/silverstripe-addressfield:resources/js/googleplacesfield.js');
         Requirements::javascript('https://maps.googleapis.com/maps/api/js?key='.$key.'&libraries=places');
 
