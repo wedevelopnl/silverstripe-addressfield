@@ -22,7 +22,7 @@ class GooglePlacesField extends TextField {
 
     public function __construct($name, $title = null, $value = '', $maxLength = null, $form = null)
     {
-        $config = Config::inst()->get(self::class);
+        $config = Config::forClass(self::class);
         if ($config->get('maps_api_key')) {
             $key = $config->get('maps_api_key');
         }
