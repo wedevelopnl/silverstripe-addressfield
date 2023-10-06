@@ -27,7 +27,7 @@ class GooglePlacesField extends TextField {
             $key = $config->get('maps_api_key');
         }
 
-        if (empty($key) && Environment::getEnv('WDVLP_ELEMENTAL_MAPS_API_KEY')) {
+        if (empty($key) && Environment::getEnv('WDVLP_ADDRESSFIELD_MAPS_API_KEY')) {
             $key = Environment::getEnv('WDVLP_ADDRESSFIELD_MAPS_API_KEY');
         }
 
