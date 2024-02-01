@@ -6,7 +6,7 @@ Address field with geolocation
 
 ## Requirements
 
-* Silverstripe CMS ^5
+* Silverstripe CMS `^4 || ^5`
 * "jeroendesloovere/geolocation-php-api": "1.3.*"
 
 ## Installation
