@@ -12,7 +12,7 @@ Address field with geolocation
 ## Installation
 
 ```
-composer require "thewebmen/silverstripe-addressfield" "dev-master"
+composer require "wedevelopnl/silverstripe-addressfield" "dev-master"
 ```
 
 ## Config

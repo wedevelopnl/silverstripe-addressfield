@@ -35,7 +35,7 @@ class GooglePlacesField extends TextField {
             throw new \InvalidArgumentException("maps_api_key is empty", 1);
         }
 
-        Requirements::javascript('thewebmen/silverstripe-addressfield:resources/js/googleplacesfield.js');
+        Requirements::javascript('wedevelopnl/silverstripe-addressfield:resources/js/googleplacesfield.js');
         Requirements::javascript('https://maps.googleapis.com/maps/api/js?key='.$key.'&libraries=places');
 
         $this->addExtraClass('text');
